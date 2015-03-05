@@ -8,9 +8,7 @@ $:
         div(class="container"):
             div(class="row"):
                 div(class="col-md-9"):
-                    h2(class="section-heading"): "우석 면학관은"
-                    p(class="lead"):
-                        '우석고 면학관은 우석고등학교에 기숙사가 없던 때에 기숙사로 운영하던 곳입니다. 1992년부터 2004년까지 12년 동안 기숙사로 운영하다가, 교내에 기숙사가 신축되면서 1차적인 성적 우수학생은 학교 기숙사에서 지도하고, 2차적인 성적우수학생은 면학관에서 지도하게 되었습니다.'
+                    h2(class="section-heading"): "우석 면학관 소개"
 
     div(class="subthread"):
         div(class="container"):
@@ -18,6 +16,7 @@ $:
                 div(class="col-md-8"):
                     h2(class="section-heading"): "오래된 역사로 다져진 경험"
                     p(class="lead"):
+                        '우석 면학관은 우석고등학교에 기숙사가 없던 때에 기숙사로 운영하던 곳입니다. 1992년부터 2004년까지 12년 동안 기숙사로 운영하다가, 교내에 기숙사가 신축되면서 1차적인 성적 우수학생은 학교 기숙사에서 지도하고, 2차적인 성적우수학생은 면학관에서 지도하게 되었습니다. '
                         span(class="stressed-string"): "우석고 기숙사"
                         '였던 현재의 '
                         span(class="stressed-string"): "우석고 면학관"
