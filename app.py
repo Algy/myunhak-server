@@ -7,11 +7,11 @@ from tempy import Environment
 app = Flask(__name__)
 
 tempy_env = Environment("tempy-templates", cache_module=False)
-tempy_env.compile_option.write_py = True 
+# tempy_env.compile_option.write_py = True 
 
 @app.route("/", methods=["GET"])
 def index():
-    return str(tempy_env.module("index").Template())
+    return str(tempy_env.module("introduction").Template())
 
 
 @app.route("/introduction", methods=["GET"])
@@ -35,17 +35,25 @@ def introduction():
     print "  stringify: ", "%.2f"%((e3 - s3)*1000), "(ms)"
     return result
 
+@app.route("/policy", methods=["GET"])
+def policy():
+    return str(tempy_env.module("policy").Template())
+
+
 @app.route("/entrance", methods=["GET"])
 def entrance():
     return str(tempy_env.module("entrance").Template())
+
 
 @app.route("/entrance_form", methods=["GET"])
 def entrance_form():
     return str(tempy_env.module("entrance_form").Template())
 
+
 @app.route("/canflaskscale", methods=["GET"])
 def canflaskscale():
     return str(tempy_env.module("canflaskscale").MainTemplate())
+
 
 if __name__ == "__main__":
     app.run(port=8192, debug=True)
