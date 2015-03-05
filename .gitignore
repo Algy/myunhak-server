@@ -56,3 +56,5 @@ target/
 
 # Tempy Compiled files
 *.tpyc
+
+.DS_Store

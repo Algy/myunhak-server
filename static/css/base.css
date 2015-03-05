@@ -1,0 +1,101 @@
+@import url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);
+
+body {
+    font-family: 'Nanum Barun Gothic', '돋움', '굴림', sans-serif;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.introduction-btn {
+    margin-top: 20px;
+    padding: 14px 30px;
+}
+
+.colored-btn {
+    background: #dd5e19;
+    color: #f1f1f1;
+}
+
+.colored-btn:hover {
+    background: #cd4e09;
+    color: #f1f1f1;
+}
+
+.colored-btn:active {
+    background:  #dd5e19;
+    color: #f1f1f1;
+}
+
+.colored-btn:focus {
+    background: #cd4e09;
+    color: #f1f1f1;
+}
+
+.masthread {
+    padding: 80px 0;
+    background-color: #0089c5;
+    background-repeat: repeat-x;
+    text-shadow: 0 2px 0 rgba(0,0,0,.1);
+    color: #f1f1f1;
+    margin-bottom: 0px;
+}
+
+.subthread {
+    padding: 80px 0;
+}
+
+.section-heading {
+    font-size: 55px;
+    margin-bottom: 30px;
+}
+
+.section-bar {
+    border: solid 1px #eee;
+    margin: 0px 0;
+}
+
+.stressed-span {
+}
+
+
+.footer-bar {
+    border: solid 1px #eee;
+    margin: 40px 0;
+}
+
+.footer-info {
+    border-top: solid 1px #eee;
+    margin-top: 40px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    text-align: center;
+
+}
+
+.footer-info p {
+    margin-bottom: 0px;
+}
+
+.footer-info .telephone {
+    margin-right: 10px;
+}
+
+.showcase .icon-container {
+}
+.showcase h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.showcase p {
+    font-size: 16px;
+}
+.main-section {
+    margin-top: 40px;
+}

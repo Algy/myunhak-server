@@ -1,0 +1,27 @@
+import basic
+
+
+
+basic.coloums:
+    div:
+        a
+        a
+        a
+        a
+    div:
+        a
+        a
+        a
+        a
+
+
+layout.LogicallyDivided:
+    Left:
+        a
+        a
+        a
+    Right:
+        b
+        b
+        b
+        b
