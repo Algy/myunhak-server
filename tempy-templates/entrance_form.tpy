@@ -4,36 +4,37 @@ import_from base:
 
 Content = \
 div(class="container main-section"):
-    div(class="jumbotron"):
-        form (class="middle-content", method="POST"):
+    div(class="jumbotron form-jumbotron"):
+        form (class="form-content", method="POST"):
             h2: "입실 신청서"
-            div:
+            p:
                 span: "학년"
                 input(type="text", name="grade")
+            p:
                 span: "반"
                 input(type="text", name="class")
+            p:
                 span: "이름"
                 input(type="text", name="name")
-            div:
+            p:
                 span: "입실 희망 일자와 입실 희망 시간"
                 # 여기에 날짜 선택 플러그인 달기
                 input(type="text", name="desired_date")
-            div:
+            p:
                 span: "입실하게 된 동기"
-                input(type="radio", name="motive", value="본인 의사")
+                input(type="checkbox", name="motive", value="본인 의사")
                 span: "본인 의사"
-                input(type="radio", name="motive", value="부모 권유")
+                input(type="checkbox", name="motive", value="부모 권유")
                 span: "부모 권유"
-                input(type="radio", name="motive", value="친구 권유")
+                input(type="checkbox", name="motive", value="친구 권유")
                 span: "친구 권유"
-                input(type="radio", name="motive", value="기타")
+                input(type="checkbox", name="motive", value="기타")
                 span: "기타"
-            div:
-                div: "특별한 참고 사항이나 건의 사항"
-                textarea(rows="50", cols="80")
+            p: "특별한 참고 사항이나 건의 사항"
+            textarea(rows="5", style="width: 100%")
             h2: "상담 카드 작성"
             div:
-                a(class="btn btn-primary btn-lg", href="#", role="button"): "제출하기"
+                a(class="btn btn-lg colored-btn", href="#", role="button"): "제출하기"
 
 
 
@@ -43,3 +44,4 @@ def Template():
         Content
         CSSFiles -> $:
             "/static/css/entrace_form.css"
+        MasThread -> $$(class="masthread-purple", content="입실 신청")

@@ -5,7 +5,6 @@ MenuList = $:
     $$(type="entrance", url="/entrance" , text="입실신청")
     $$(type="withdrawal", url="/withdrawal", text="퇴실신청")
     $$(type="proposal", url="/proposal", text="건의사항")
-#    $$(type="photo", url="/photo", text="사진")
 
 
 def Navbar(Type):
@@ -20,7 +19,7 @@ def Navbar(Type):
                     span(class="icon-bar")
                     span(class="icon-bar")
                     span(class="icon-bar")
-            a(href="#", class="navbar-brand"): "우석면학관"
+            a(href="/", class="navbar-brand"): "우석면학관"
             nav(class="collapse navbar-collapse bs-navbar-collapse"):
                 ul(class="nav navbar-nav"):
                     $each (Dict, in=MenuList):
@@ -43,7 +42,7 @@ def Footer():
             small(class="telephone"): "TEL. 010-2600-7399(사모님)"
             small(class="telephone"): "TEL. 010-3652-7399(김창선 선생님)"
 
-def Base(Type, Content, CSSFiles=None, JSFiles=None):
+def Base(Type, Content, MasThread=None, CSSFiles=None, JSFiles=None):
     html:
         head:
             seq:
@@ -55,12 +54,21 @@ def Base(Type, Content, CSSFiles=None, JSFiles=None):
                     link(rel="stylesheet", type="text/css", href=filename)
         body:
             Navbar(Type)
+            if (MasThread):
+                main(class="masthread " + MasThread.get("class", "")):
+                    div(class="container"):
+                        div(class="row"):
+                            div(class="col-md-9"):
+                                h2(class="section-heading"): 
+                                    MasThread["content"]
             Content
             Footer()
             seq:
                 if (!JSFiles):
                     JSFiles = $()
-                JSFiles.append>
-                    "/static/jquery/jquery-1.11.2.min.js"
+                JSFiles.extend>
+                    $>
+                        "/static/jquery/jquery-1.11.2.min.js"
+                        "/static/js/algyscroll.js"
                 each (filename, in=JSFiles):
                     script(type="text/javascript", src=filename)

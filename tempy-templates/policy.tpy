@@ -19,21 +19,19 @@ def EmitList(form, head=None, head_attrs=$$(), li_attrs=$$(), is_ordered=True):
 
 
 Container = \
-$:
+div(class="explaination-section"):
+    h3(id="advisory-info", class="first-explaination-heading"): "생활지도 안내"
     EmitList>
         $:
-            EmitList>
-                $:
-                    "정숙 지도"
-                    "졸음 방지 지도"
-                    $:
-                        "시간 엄수 지도---시간표에 따라 자율 학습 실시"
-                        div: "외출, 외박할 때 반드시 부모님의 확인 전화가 있어야 함"
-                    "취침 상태 및 생활지도를 위해 각 방에 투명 유리창 설치"
-                    "선생님과 사모님이 야간에도 상주하며 밀착지도 관리"
-                head -> "<자율 학습 수칙>과 <생활 지도 규정>에 따른 철저한 학습 관리"
-        head -> h3: "생활지도 안내"
-    h3: "자율학습 시간표"
+            "정숙 지도"
+            "졸음 방지 지도"
+            $:
+                "시간 엄수 지도. 시간표에 따라 자율 학습 실시"
+                div: "외출, 외박할 때 반드시 부모님의 확인 전화가 있어야 함"
+            "취침 상태 및 생활지도를 위해 각 방에 투명 유리창 설치"
+            "선생님과 사모님이 야간에도 상주하며 밀착지도 관리"
+        head -> h4: "<자율 학습 수칙>과 <생활 지도 규정>에 따른 철저한 학습 관리"
+    h3(id="timetable-info", class="explaination-heading"): "자율학습 시간표"
     div (class="row"):
         div (class="col-md-3"):
             table(class="table table-bordered table-striped"):
@@ -62,22 +60,21 @@ $:
                         td: "10:50~12:20"
                         td: "심야 2교시"
                 caption: "일요일 저녁 시간표"
-
     p: "※평일 취침:1시"
     p: "※일요일 취침:12시 50분"
-    EmitList>
-        $:
-            "필요한 날짜에 학원 수강 가능"
-            EmitList>
-                $:
-                    "3학년은 매주 토요일 학교 자율학습 후 오후6시 귀가해서 일요일 저녁9시까지 입실"
-                    "1,2학년은 매주 금요일 학교 일정 후에 귀가해서 일요일 저녁 9시까지 입실"
-                head -> "귀가 안내"
-            "식사 안내---아침, 점심, 저녁 모두 학교 급식, 식비는 스쿨뱅킹으로 청구"
-            "면학관 생활비 안내--1기분(3개월분) 54만원 전북은행 528-21-0544562 장미화"
-            "면학관 지도---선생님, 사모님, 사감"
-        is_ordered -> False
-        head -> h3: "학원 수강 안내"
+
+    h3(id="inout-info", class="explaination-heading"): "입출실 안내"
+    h4: "학원 수강"
+    p: "필요한 날짜에 학원 수강 가능"
+    h4: "식사 안내"
+    p: "아침, 점심, 저녁 모두 학교 급식, 식비는 스쿨뱅킹으로 청구"
+    h4: "귀가 안내"
+    p:
+        "3학년은 매주 토요일 학교 자율학습 후 오후6시 귀가해서 일요일 저녁9시까지 입실"
+        "1,2학년은 매주 금요일 학교 일정 후에 귀가해서 일요일 저녁 9시까지 입실"
+    h4: "면학관 지도"
+    p: "선생님, 사모님, 사감"
+
     EmitList>
         $:
             " 자율학습 시간 중이나 취침 시간에 핸드폰 사용 금지---적발시 압수 후 일주일 후에 돌려줌 --->압수된 후에 바로 퇴실해도 일주일 지나야 돌려 줌. "
@@ -120,8 +117,8 @@ $:
             " 책, 침구, 세면 도구 외 개인용품(책꽂이, 옷장, 운동기구, 오락기구 등) 반입 금지"
             " 의자에 앉아 뒤로 버티거나 끌지 않기 "
             " 모의고사 전날과 당일은 1시간 일찍 취침 "
-        head -> h3: "면학관생 알아야 할 사항"
-    h3: "자율학습 수칙"
+        head -> h3(id="notification-info", class="explaination-heading"): "면학관생 알아야 할 사항"
+    h3(id="studying-rule-info", class="explaination-heading"): "자율학습 수칙"
     $let>
         lst -> $:
             $:
@@ -147,13 +144,10 @@ $:
                 "자기 자리에 앉기"
                 "정확하고 신속한 인원 파악을 위해 자기 자리에 꼭 앉아라."
     --
-        ul:
-            $each (elem, in=lst):
-                li:
-                    elem[0]
-                    $each (x, in=elem[1:]):
-                        p: x
-    h3: "생활지도 규정"
+        each (elem, in=lst):
+            h4: elem[0]
+            p: " ".join(elem[1:])
+    h3(id="living-rule-info", class="explaination-heading"): "생활지도 규정"
     p: "면학관의 좋은 면학 분위기 유지를 위해 다음과 같이 생활지도 규정을 정함."
     table(class="table table-bordered table-striped"):
         thead:
@@ -184,7 +178,7 @@ $:
     p: 
         b:"※강제 퇴실의 경우====>면학관비 환불 안됨"
     p: "※위에 명시되지 않은 사항은 상황에 맞는 적절한 지도"
-    h3: "면학관 생활비"
+    h3(id="payment-info", class="explaination-heading"): "면학관 생활비"
     p:
         "1기분(3개월분) 54만원"
     p:
@@ -202,21 +196,35 @@ $:
     div(class="container main-section"):
         div (class="row"):
             div(class="col-md-2"): # side-bar area
-                ul(class="nav nav-pills nav-stacked"):
-                    li(role="presentation", class="active"):
-                        a(href="#"): "생활지도 안내"
+                ul(id="policy-sidebar", 
+                   class="nav nav-pills nav-stacked"):
                     each>
                         x
                         in -> $:
-                            "자율학습 시간표"
-                            "학원 수강 안내"
-                            "면학관생 알아야 할 사항"
-                            "자율학습 수칙"
-                            "생활지도 규정"
-                            "면학관 생활비"
+                            _:
+                                "생활지도 안내"
+                                "#advisory-info"
+                            _:
+                                "자율학습 시간표"
+                                "#timetable-info"
+                            _:
+                                "입출실 안내"
+                                "#inout-info"
+                            _:
+                                "면학관생 알아야 할 사항"
+                                "#notification-info"
+                            _:
+                                "자율학습 수칙"
+                                "#studying-rule-info"
+                            _:
+                                "생활지도 규정"
+                                "#living-rule-info"
+                            _:
+                                "면학관 생활비"
+                                "#payment-info"
                     --
                         li(role="presentation"):
-                            a(href="#"): x
+                            a(href=x[1]): x[0]
             div(class="col-md-10"):
                 Container
 

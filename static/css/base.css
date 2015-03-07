@@ -34,12 +34,16 @@ body {
 }
 
 .masthread {
-    padding: 80px 0;
+    padding: 50px 0;
     background-color: #0089c5;
     background-repeat: repeat-x;
     text-shadow: 0 2px 0 rgba(0,0,0,.1);
     color: #f1f1f1;
     margin-bottom: 0px;
+}
+
+.masthread-purple {
+    background-color: #8049d5;
 }
 
 .subthread {
@@ -98,4 +102,60 @@ body {
 }
 .main-section {
     margin-top: 40px;
+}
+
+/* For the policy page */
+
+h3.first-explaination-heading {
+    border-bottom: solid 1px #ddd;
+    margin-top: 0px;
+}
+h3.explaination-heading {
+    border-bottom: solid 1px #ddd;
+    margin-top: 60px;
+}
+
+.explaination-section p {
+    font-size: 15px;
+}
+.explaination-section li {
+    font-size: 15px;
+}
+
+.explaination-section h3 {
+    font-size: 22px;
+}
+
+.explaination-section h4 {
+    font-size: 18px;
+}
+
+#policy-sidebar {
+    margin-bottom: 40px;
+    width: 160px;
+}
+
+@media (min-width: 992px) {
+    .fixed-sidebar {
+        position: fixed;
+        top: 40px;
+    }
+}
+
+/* For entrance & entrance-form */
+
+.form-jumbotron {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px;
+
+    font-size: 15px;
+}
+
+.form-jumbotron ul.nobullet {
+    list-style: none;
+}
+
+.form-jumbotron p {
+    font-size: 15px;
 }

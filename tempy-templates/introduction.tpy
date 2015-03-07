@@ -4,11 +4,6 @@ import_from base:
 
 Content = \
 $:
-    main(class="masthread"):
-        div(class="container"):
-            div(class="row"):
-                div(class="col-md-9"):
-                    h2(class="section-heading"): "우석 면학관 소개"
 
     div(class="subthread"):
         div(class="container"):
@@ -30,17 +25,18 @@ $:
     div(class="subthread"):
         div(class="container"):
             div(class="row"):
-                div(class="col-md-4"):
+                div(class="col-md-5"):
                     img(alt="myunhak-photo", src="http://placehold.it/350x350")
-                div(class="col-md-8"):
+                div(class="col-md-7"):
                     h2(class="section-heading"): "빈틈없고 철저한 지도"
                     p(class="lead"):
                         "우석 면학관은 20여년간 쌓인 노하우로 학생에 대한 밀착지도 및 철저한 학습 관리를 하고 있습니다. "
                         "<자율 학습 수칙>과 <생활 지도 규정>에 따라 정숙 지도, 졸음 방지 지도, 시간 엄수 지도를 하고 있습니다. "
                         "야간에도 선생님과 사모님이 상주하여 빈틈없이 학습 관리하며 학생들을 내 가족과 같은 세밀한 정성과 따뜻한 사랑으로 지도하고 있습니다."
-                    button(type="button", class="btn btn-default btn-lg colored-btn introduction-btn"):
-                        span(class="glyphicon glyphicon-pushpin")
-                        "  자세히 알아보기"
+                    a(href="/policy"):
+                        button(type="button", class="btn btn-default btn-lg colored-btn introduction-btn"):
+                            span(class="glyphicon glyphicon-pushpin")
+                            "  자세히 알아보기"
 
     hr(class="section-bar")
 
@@ -82,10 +78,10 @@ $:
                 p: 
                     "휴게실에는 냉․온수 겸용 정수기뿐만 아니라 음료수 자판기와 컵라면 자판기가 설치되어 있습니다."
 
-        button(type="button", class="btn btn-default btn-lg colored-btn introduction-btn"):
-            span(class="glyphicon glyphicon-picture")
-            "사진 보기"
-
+        a(href="/photo"):
+            button(type="button", class="btn btn-default btn-lg colored-btn introduction-btn"):
+                span(class="glyphicon glyphicon-picture")
+                "사진 보기" 
 
     hr(class="section-bar")
 
@@ -102,13 +98,14 @@ $:
                 h3: "의지가 약해서 중도포기가 잦은 학생"
                 p: "우석 면학관은 오랜 경험을 바탕으로 한 시간표와 확실한 통제 어쩌구 저쩌구"
         
-        button(type="button", class="btn btn-default btn-lg colored-btn introduction-btn"):
-            span(class="glyphicon glyphicon-pencil")
-            "입실신청하기"
+        a(href="/entrance"):
+            button(type="button", class="btn btn-default btn-lg colored-btn introduction-btn"):
+                span(class="glyphicon glyphicon-pencil")
+                "입실신청하기"
 
                                     
 def Template():
     Base>
         "introduction"
         Content
-
+        MasThread -> $$(content="우석면학관 소개")
