@@ -1,0 +1,84 @@
+import_from base:
+    Base
+
+
+def ContentFun(lst, first_idx=0):
+    carousel_id = "carousel-photo-gallery"
+    div(id=carousel_id, class="carousel slide"):
+        # Wrapper for slides
+        div(class="carousel-inner", role="listbox"):
+            for (x, index=idx, in=lst):
+                tag = \
+                if (idx == first_idx):
+                    " active"
+                    ""
+                div(class="item" + tag):
+                    x
+
+        a(class="left carousel-control", href="#"+carousel_id, role="button", "data-slide"="prev"):
+            span(class="glyphicon glyphicon-chevron-left", "aria-hidden"="true")
+            span(class="sr-only"): "Previous"
+        a(class="right carousel-control", href="#"+carousel_id, role="button", "data-slide"="next"):
+            span(class="glyphicon glyphicon-chevron-right", "aria-hidden"="true")
+            span(class="sr-only"): "Next"
+
+        # Indicators
+        ol(class="carousel-indicators"):
+            for (x, index=idx, in=lst):
+                li>
+                    "data-target" -> "#" + carousel_id
+                    "data-slide-to" -> str(idx)
+                    class -> \
+                        if (idx == first_idx): 
+                            "active"
+                            ""
+
+LIST = $:
+    _:
+        "/static/slide/img/curtain.jpg"
+        "면학실"
+        ""
+    _:
+        "/static/slide/img/desk.jpg"
+        "면학실 내부"
+        "모든 책상에는 전자키가 구비되어 있음"
+    _:
+        "/static/slide/img/lobby.jpg"
+        "관리실 복도"
+        ""
+    _:
+        "/static/slide/img/lobby2.jpg"
+        ""
+        ""
+    _:
+        "/static/slide/img/lounge.jpg"
+        "휴게실"
+        "냉온수 정수기, 음료수, 컵라면 자판기 구비"
+    _:
+        "/static/slide/img/rooms.jpg"
+        "취침실 복도"
+        ""
+    _:
+        "/static/slide/img/bed.jpg"
+        "취침실"
+        "4인실 5개 2인실 28개 구비"
+    _:
+        "/static/slide/img/bathroom.jpg"
+        "방 내부 화장실"
+        "24시간 사시사철 온수 사용 가능"
+    
+
+def Template():
+    Base>
+        "photo"
+        ContentFun>
+            each (x, in=LIST):
+                $:
+                    img(class="carousel-slide-image", src=x[0])
+                    div(class="carousel-caption"): 
+                        h3: x[1]
+                        p: x[2]
+        MasThread -> $$(class="masthread-purple", content="갤러리")
+        JSFiles -> $:
+            "/static/js/ "
+

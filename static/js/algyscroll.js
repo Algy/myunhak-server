@@ -35,7 +35,7 @@ $(document).ready(function () {
     var isFixed = undefined;
     if (!!sidebar) {
         console.log(getAABB(sidebar));
-        var thresholdY = getAABB(sidebar).top - 40; // initial position of sidebar
+        var thresholdY = getAABB(sidebar).top - 60; // initial position of sidebar
         console.log("Threshold: " + thresholdY);
         $(document).scroll(function () {
             var screenY = $(document).scrollTop();
@@ -54,7 +54,7 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
-    var initialList = $(".explaination-section h3");
+    var initialList = $(".explaination-section section");
     var lastIdx = -1;
     var rectList = [];
     var isFirst = true;
@@ -67,13 +67,12 @@ $(document).ready(function () {
     function onScroll ( ) {
         var idx;
         for (idx = 0; idx < rectList.length; idx++) {
-            if (rectList[idx].top >= $(document).scrollTop() - 30) {
+            if (rectList[idx].bottom >= $(document).scrollTop()) {
                 break;
             }
         }
         if (idx == rectList.length)
             idx = -1;
-        console.log(idx);
         var nodes = $("#policy-sidebar > li");
         if (isFirst || lastIdx != idx) {
             if (lastIdx >= 0) {

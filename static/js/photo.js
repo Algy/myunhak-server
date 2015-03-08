@@ -1,0 +1,1 @@
+$("#carousel-photo-gallery").carousel()

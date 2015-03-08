@@ -39,6 +39,10 @@ def introduction():
 def policy():
     return str(tempy_env.module("policy").Template())
 
+@app.route("/photo", methods=["GET"])
+def photo():
+    return str(tempy_env.module("photo").Template())
+
 
 @app.route("/entrance", methods=["GET"])
 def entrance():
