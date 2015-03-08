@@ -47,6 +47,7 @@ def Footer():
 def Base(Type, Content, MasThread=None, CSSFiles=None, JSFiles=None):
     html:
         head:
+            meta(name="viewport", content="width=device-width, initial-scale=1")
             seq:
                 if (!CSSFiles):
                     CSSFiles = $()
