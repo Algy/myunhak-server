@@ -7,36 +7,30 @@ $:
 
     div(class="subthread"):
         div(class="container"):
-            div(class="row"):
-                div(class="col-md-8"):
-                    h2(class="section-heading"): "오래된 역사로 다져진 경험"
-                    p(class="lead"):
-                        '우석 면학관은 우석고등학교에 기숙사가 없던 때에 기숙사로 운영하던 곳입니다. 1992년부터 2004년까지 12년 동안 기숙사로 운영하다가, 교내에 기숙사가 신축되면서 1차적인 성적 우수학생은 학교 기숙사에서 지도하고, 2차적인 성적우수학생은 면학관에서 지도하게 되었습니다. '
-                        span(class="stressed-string"): "우석고 기숙사"
-                        '였던 현재의 '
-                        span(class="stressed-string"): "우석고 면학관"
-                        '은 서울대, 고려대, 연세대, 경찰대를 비롯해서 의학계, 한의학계, 약학계 그리고 각종 사관학교에 수백 명의 합격생을 배출한 유서 깊은 곳입니다. 본교 국어 교사인 김창선 선생님과, 그의 사모님이 22년의 경험을 바탕으로 조금도 빈틈없는 자율학습 지도를 하고 있으며 앞으로도 철저한 관리를 통하여 성적 향상이 되도록 최선을 다할 것입니다.'
-                    
-                div(class="col-md-4"):
-                    img(alt="myunhak-photo", width="350px", src="/static/img/clock.jpg")
+            h2(class="section-heading"): "오랜 역사와 전통"
+            img(alt="myunhak-photo", width="350px", class="section-photo", src="/static/img/mainbanner.jpg")
+            p(class="lead"):
+                '우석 면학관은 우석고등학교에 기숙사가 없던 때에 기숙사로 운영하던 곳입니다. 1992년부터 2004년까지 12년 동안 기숙사로 운영하다가, 교내에 기숙사가 신축되면서 1차적인 성적 우수학생은 학교 기숙사에서 지도하고, 2차적인 성적우수학생은 면학관에서 지도하게 되었습니다. '
+                span(class="stressed-string"): "우석고 기숙사"
+                '였던 현재의 '
+                span(class="stressed-string"): "우석고 면학관"
+                '은 서울대, 고려대, 연세대, 경찰대를 비롯해서 의학계, 한의학계, 약학계 그리고 각종 사관학교에 수백 명의 합격생을 배출한 유서 깊은 곳입니다. 본교 국어 교사인 김창선 선생님과, 그의 사모님이 22년의 경험을 바탕으로 조금도 빈틈없는 자율학습 지도를 하고 있으며 앞으로도 철저한 관리를 통하여 성적 향상이 되도록 최선을 다할 것입니다.'
+                
         
     hr(class="section-bar")
 
     div(class="subthread"):
         div(class="container"):
-            div(class="row"):
-                div(class="col-md-8"):
-                    h2(class="section-heading"): "빈틈없고 철저한 지도"
-                    p(class="lead"):
-                        "우석 면학관은 20여년간 쌓인 노하우로 학생에 대한 밀착지도 및 철저한 학습 관리를 하고 있습니다. "
-                        "<자율 학습 수칙>과 <생활 지도 규정>에 따라 정숙 지도, 졸음 방지 지도, 시간 엄수 지도를 하고 있습니다. "
-                        "야간에도 선생님과 사모님이 상주하여 빈틈없이 학습 관리하며 학생들을 내 가족과 같은 세밀한 정성과 따뜻한 사랑으로 지도하고 있습니다."
-                    a(href="/policy"):
-                        button(id="to-policy-page-btn", type="button", class="btn btn-default btn-lg colored-btn introduction-btn"):
-                            span(class="glyphicon glyphicon-pushpin")
-                            "  자세히 알아보기"
-                div(class="col-md-4"):
-                    img(alt="myunhak-photo", width="350px", src="/static/img/curtain.jpg")
+                h2(class="section-heading"): "빈틈없고 철저한 지도"
+                img(alt="myunhak-photo", width="350px", class="section-photo", src="/static/slide/img/rooms.jpg")
+                p(class="lead"):
+                    "우석 면학관은 20여년간 쌓인 노하우로 학생에 대한 밀착지도 및 철저한 학습 관리를 하고 있습니다. "
+                    "<자율 학습 수칙>과 <생활 지도 규정>에 따라 정숙 지도, 졸음 방지 지도, 시간 엄수 지도를 하고 있습니다. "
+                    "야간에도 선생님과 사모님이 상주하여 빈틈없이 학습을 관리하며 학생들을 내 가족과 같이 세밀한 정성과 따뜻한 사랑으로 지도하고 있습니다."
+                a(href="/policy"):
+                    button(id="to-policy-page-btn", type="button", class="btn btn-default btn-lg colored-btn introduction-btn"):
+                        span(class="glyphicon glyphicon-pushpin")
+                        "  자세히 알아보기"
 
     hr(class="section-bar")
 
@@ -58,7 +52,7 @@ $:
             div(class="col-md-4 showcase"):
                 h3: "면학실 운영"
                 p: 
-                    "정규 학습 시간 내의 모든 공부는 면학실에서 이루어지며 선생님 및 사감의 지도를 받습니다. 모든 면학실 책상에는 전자키가 구비되어 있습니다."
+                    "정규 학습 시간 내의 모든 공부는 면학실에서 이루어지며 선생님, 사모님, 사감의 지도를 받습니다. 모든 면학실 책상에는 전자키가 구비되어 있습니다."
             div(class="col-md-4 showcase"):
                 h3: "만족스러운 주거 환경"
                 p: 
@@ -78,6 +72,12 @@ $:
                 h3: "휴게실 운영"
                 p: 
                     "휴게실에는 냉․온수 겸용 정수기뿐만 아니라 음료수 자판기와 컵라면 자판기가 설치되어 있습니다."
+        div(class="row"):
+            div(class="col-md-4 showcase"):
+                h3: "완벽한 냉난방 시설"
+                p:
+                    "모든 방에 에어컨 설치 그리고 중앙 난방을 통하여 여름철에는 시원하게, 겨울철에는 따뜻하게 생활을 할 수 있습니다."
+
 
         a(href="/photo"):
             button(type="button", class="btn btn-default btn-lg colored-btn introduction-btn"):
@@ -88,16 +88,15 @@ $:
 
     div(class="container subthread"):
         h2: '특히 다음과 같은 학생은 입실을 권유합니다.'
-        div(class="row"):
-            div(class="col-md-4 showcase"):
-                h3: "원거리 통학생"
-                p: "우석 면학관은 정문에 있어서 어쩌구 저쩌구"
-            div(class="col-md-4 showcase"):
-                h3: "철저한 공부환경이 필요한 학생"
-                p: "가정의 공부 환경이 좋지 못하거나 부모가 철저하게 학습 지도를 못하는 경우"
-            div(class="col-md-4 showcase"):
-                h3: "의지가 약해서 중도포기가 잦은 학생"
-                p: "우석 면학관은 오랜 경험을 바탕으로 한 시간표와 확실한 통제 어쩌구 저쩌구"
+        ol(style="font-size: 22px;margin-top:30px;"):
+            each>
+                x
+                in -> $:
+                    "원거리 통학생"
+                    "가정의 공부 환경이 좋지 못하거나 부모가 철저하게 학습 지도를 못하는 경우"
+                    "의지가 약해서 중도포기가 잦은 학생"
+            --
+                li(style="margin-top: 12px", class="showcase"): x
         
         a(href="/entrance"):
             button(type="button", class="btn btn-default btn-lg colored-btn introduction-btn"):
