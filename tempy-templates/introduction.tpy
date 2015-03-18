@@ -7,13 +7,13 @@ $:
 
     div(class="subthread"):
         div(class="container"):
-            h2(class="section-heading"): "오랜 역사와 전통"
+            h2(class="section-heading"): "23년 역사와 전통"
             img(alt="myunhak-photo", width="350px", class="section-photo", src="/static/img/mainbanner.jpg")
             p(class="lead"):
                 '우석 면학관은 우석고등학교에 기숙사가 없던 때에 기숙사로 운영하던 곳입니다. 1992년부터 2004년까지 12년 동안 기숙사로 운영하다가, 교내에 기숙사가 신축되면서 1차적인 성적 우수학생은 학교 기숙사에서 지도하고, 2차적인 성적우수학생은 면학관에서 지도하게 되었습니다. '
                 span(class="stressed-string"): "우석고 기숙사"
                 '였던 현재의 '
-                span(class="stressed-string"): "우석고 면학관"
+                span(class="stressed-string"): "우석면학관"
                 '은 서울대, 고려대, 연세대, 경찰대를 비롯해서 의학계, 한의학계, 약학계 그리고 각종 사관학교에 수백 명의 합격생을 배출한 유서 깊은 곳입니다. 본교 국어 교사인 김창선 선생님과, 그의 사모님이 22년의 경험을 바탕으로 조금도 빈틈없는 자율학습 지도를 하고 있으며 앞으로도 철저한 관리를 통하여 성적 향상이 되도록 최선을 다할 것입니다.'
                 
         
@@ -94,7 +94,7 @@ $:
                 in -> $:
                     "원거리 통학생"
                     "가정의 공부 환경이 좋지 못하거나 부모가 철저하게 학습 지도를 못하는 경우"
-                    "의지가 약해서 중도포기가 잦은 학생"
+                    "의지가 약해서 중도 포기가 잦은 학생"
             --
                 li(style="margin-top: 12px", class="showcase"): x
         

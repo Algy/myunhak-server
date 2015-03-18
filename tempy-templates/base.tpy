@@ -37,7 +37,7 @@ def Navbar(Type, NavbarClass=""):
 def Footer():
     footer(class="footer-info"):
         p:
-            "전라북도 전주시 덕진구 반월동 230-24 (쪽구름2길 21) 우석고 면학관"
+            "전라북도 전주시 덕진구 반월동 230-24 (쪽구름2길 21) 우석 면학관"
         p:
             "우편번호: 561-320"
         p:

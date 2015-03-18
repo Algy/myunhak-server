@@ -17,6 +17,9 @@ div(class="container main-section"):
                 span: "이름"
                 input(type="text", name="name")
             p:
+                span: "핸드폰 번호"
+                input(type="text", name="phone")
+            p:
                 span: "입실 희망 일자와 입실 희망 시간"
                 # 여기에 날짜 선택 플러그인 달기
                 input(type="text", name="desired_date")

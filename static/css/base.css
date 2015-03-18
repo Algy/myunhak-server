@@ -140,6 +140,12 @@ h3.explaination-heading {
     margin-top: 60px;
 }
 
+h4.explaination-heading {
+    border-bottom: solid 1px #ddd;
+    display: inline;
+    margin-bottom: 20px;
+}
+
 .explaination-section p {
     font-size: 15px;
 }
@@ -167,6 +173,29 @@ h3.explaination-heading {
         position: fixed;
         top: 60px;
     }
+}
+
+/* For policy */
+.timetable {
+    float: left;
+    max-width: 400px;
+    margin-right: 40px;
+}
+
+.timetable thead {
+    font-size: 17px;
+}
+
+.timetable tbody {
+    font-size: 17px;
+}
+
+.timetable caption {
+    font-size: 16px;
+}
+
+.timetable-container {
+    overflow: hidden;
 }
 
 /* For entrance & entrance-form */
@@ -206,3 +235,13 @@ img.carousel-slide-image {
 .carousel-fade .carousel-inner .active {
     opacity: 1;
 }
+
+
+#photo-left-btn span.glyphicon {
+    font-size: 60px;
+}
+
+#photo-right-btn span.glyphicon {
+    font-size: 60px;
+}
+

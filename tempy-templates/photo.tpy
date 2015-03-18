@@ -5,6 +5,15 @@ import_from base:
 def ContentFun(lst, first_idx=0):
     carousel_id = "carousel-photo-gallery"
     div(id=carousel_id, class="carousel slide"):
+        p(style="z-index: 4000; 
+                 position: absolute; 
+                 width: 100%; 
+                 top: 20px; 
+                 font-size: 18px; 
+                 text-align: center;
+                 text-shadow: 0px 1px 2px rgba(0,0,0,0.6);
+                 color: #fff;
+                 "): "화살표 방향으로 클릭하세요."
         # Wrapper for slides
         div(class="carousel-inner", role="listbox"):
             for (x, index=idx, in=lst):
@@ -15,10 +24,10 @@ def ContentFun(lst, first_idx=0):
                 div(class="item" + tag):
                     x
 
-        a(class="left carousel-control", href="#"+carousel_id, role="button", "data-slide"="prev"):
+        a(id="photo-left-btn", class="left carousel-control", href="#"+carousel_id, role="button", "data-slide"="prev"):
             span(class="glyphicon glyphicon-chevron-left", "aria-hidden"="true")
-            span(class="sr-only"): "Previous"
-        a(class="right carousel-control", href="#"+carousel_id, role="button", "data-slide"="next"):
+            span(id="photo-right-btn", class="sr-only"): "Previous"
+        a(id="photo-right-btn", class="right carousel-control", href="#"+carousel_id, role="button", "data-slide"="next"):
             span(class="glyphicon glyphicon-chevron-right", "aria-hidden"="true")
             span(class="sr-only"): "Next"
 
@@ -78,7 +87,10 @@ def Template():
                     div(class="carousel-caption"): 
                         h3: x[1]
                         p: x[2]
-        MasThread -> $$(class="masthread-purple", content="갤러리")
+        MasThread -> $$:
+            class-> "masthread-purple"
+            content-> $:
+                "갤러리"
         JSFiles -> $:
             "/static/js/ "
 
