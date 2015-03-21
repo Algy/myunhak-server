@@ -44,7 +44,7 @@ $:
                 li:
                     div: "입실희망자는 링크에서 급식신청서를 다운 받아 작성 후 급식소에 제출해야 함."
                     div: "프린터가 없어서 곤란할 경우 김창선 선생님이 2층 교무실에서 대리해줌."
-                a(href="#"): "급식 신청서 다운로드"
+                a(href="/static/file/geupsik.hwp", target="_blank"): "급식 신청서 다운로드"
             p:
                 a(class="btn btn-lg colored-btn", href="/entrance_form", role="button"): "입실신청하기"
 

@@ -1,0 +1,47 @@
+import_from base:
+  Base
+
+
+Content = \
+div(class="container main-section"):
+
+    div(class="jumbotron form-jumbotron "):
+        form (id="submitee", class="form-horizontal form-content", method="POST"):
+            h2: "퇴실 신청서"
+            div(class="form-group"):
+                label(class="control-label"): "이름"
+                input(type="text", class="form-control input-md", name="name", placeholder="홍길동")
+            div(class="form-group"):
+                label(class="control-label"): "학년"
+                input(type="text", class="form-control", name="grade", placeholder="1학년")
+            div(class="form-group"):
+                label(class="control-label"): "반"
+                input(type="text", class="form-control", name="class", placeholder="3반")
+            div(class="form-group"):
+                label(class="control-label"): "퇴실 희망 날짜"
+                input(type="text", class="form-control", name="desired_date")
+            div(class="form-group"):
+                label(class="control-label"): "퇴실 사유(자세하게 기재)"
+                textarea(type="text", rows="5", class="form-control", name="reason")
+
+            div(class="form-group"):
+                label(class="control-label"): "면학관 생활 하면서 좋았던 점"
+                textarea(type="text", rows="5", class="form-control", name="goodpoint")
+            div(class="form-group"):
+                label(class="control-label"): "면학관 생활 하면서 안 좋았던 점"
+                textarea(type="text", rows="5", class="form-control", name="weakpoint")
+            div(class="g-recaptcha", "data-sitekey"="6Lc92QMTAAAAALq2sm-FxaaxdpGaz_tAKFbcRk3j")
+            a(type="submit", class="btn btn-lg colored-btn", href="#", role="button"): 
+                "제출하기"
+
+
+
+def Template():
+    Base>
+        "withdrawal"
+        Content
+        CSSFiles -> $:
+            "/static/css/entrace_form.css"
+        JSFiles -> $:
+            "https://www.google.com/recaptcha/api.js"
+        MasThread -> $$(class="masthread-purple", content="퇴실 신청")

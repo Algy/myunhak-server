@@ -2,49 +2,160 @@ import_from base:
   Base
 
 
-Content = \
+Content0 = \
 div(class="container main-section"):
     div(class="jumbotron form-jumbotron"):
-        form (class="form-content", method="POST"):
+        form (id="submitee", class="form-horizontal fmrm-content", method="POST"):
             h2: "입실 신청서"
-            p:
-                span: "학년"
-                input(type="text", name="grade")
-            p:
-                span: "반"
-                input(type="text", name="class")
-            p:
-                span: "이름"
-                input(type="text", name="name")
-            p:
-                span: "핸드폰 번호"
-                input(type="text", name="phone")
-            p:
-                span: "입실 희망 일자와 입실 희망 시간"
-                # 여기에 날짜 선택 플러그인 달기
-                input(type="text", name="desired_date")
-            p:
-                span: "입실하게 된 동기"
-                input(type="checkbox", name="motive", value="본인 의사")
-                span: "본인 의사"
-                input(type="checkbox", name="motive", value="부모 권유")
-                span: "부모 권유"
-                input(type="checkbox", name="motive", value="친구 권유")
-                span: "친구 권유"
-                input(type="checkbox", name="motive", value="기타")
-                span: "기타"
-            p: "특별한 참고 사항이나 건의 사항"
-            textarea(rows="5", style="width: 100%")
-            h2: "상담 카드 작성"
-            div:
-                a(class="btn btn-lg colored-btn", href="#", role="button"): "제출하기"
+            div(class="form-group"):
+                label(class="control-label"): "이름"
+                input(type="text", class="form-control", name="name", placeholder="홍길동")
+            div(class="form-group"):
+                label(class="control-label"): "학년"
+                input(type="text", class="form-control", name="grade", placeholder="1학년")
+            div(class="form-group"):
+                label(class="control-label"): "반"
+                input(type="text", class="form-control", name="class", placeholder="3반")
+            div(class="form-group"):
+                label(class="control-label"): "핸드폰 번호"
+                input(type="text", class="form-control", name="phone", placeholder="010-1234-5678")
+            div(class="form-group"):
+                label(class="control-label"): "이메일"
+                input(type="text", class="form-control", name="email", placeholder="youremail@example.com")
+            div(class="form-group"):
+                label(class="control-label"): "입실 희망 일자와 입실 희망 시간"
+                input(type="text", class="form-control", name="desired_date", placeholder="날짜와 시간을 입력하세요")
+            div(class="form-group"):
+                div:
+                    label(class="control-label"): "입실하게 된 동기"
+                div:
+                    input(type="checkbox", name="motive_himself", value="본인 의사", style="margin-left: 10px")
+                    span(style="margin-left: 4px"): "본인 의사"
+                div:
+                    input(type="checkbox", name="motive_parent", value="부모 권유", style="margin-left: 10px")
+                    span(style="margin-left: 4px"): "부모 권유"
+                div:
+                    input(type="checkbox", name="motive_friend", value="친구 권유", style="margin-left: 10px")
+                    span(style="margin-left: 4px"): "친구 권유"
+                div:
+                    input(type="checkbox", name="motive_etc", value="친구 권유", style="margin-left: 10px")
+                    span(style="margin-left: 4px"): "기타"
+            div(class="form-group"):
+                label(class="control-label"): "출신 중학교"
+                input(type="text", class="form-control", name="middle-school")
+            div(class="form-group"):
+                label(class="control-label"): "종교"
+                input(type="text", class="form-control", name="religion")
+            div(class="form-group"):
+                label(class="control-label"): "집 주소"
+                input(type="text", class="form-control", name="address")
+            div(class="form-group"):
+                label(class="control-label"): "취미 혹은 특기"
+                input(type="text", class="form-control", name="hobby")
+            div(class="form-group"):
+                label(class="control-label"): "신체적 결함 및 건강상태"
+                input(type="text", class="form-control", name="health")
+            div(class="form-group"):
+                label(class="control-label", for="checkboxes"): "희망대학"
+                div(class="row"):
+                    div(class="col-md-4"):
+                        input(type="text", class="form-control", name="desired_univ", placeholder="1순위")
+                    div(class="col-md-4"):
+                        input(type="text", class="form-control", name="desired_univ", placeholder="2순위")
+                    div(class="col-md-4"):
+                        input(type="text", class="form-control", name="desired_univ", placeholder="3순위")
+            div(class="form-group"):
+                label(class="control-label"): "희망직업"
+                div(class="row"):
+                    div(class="col-md-4"):
+                        input(type="text", class="form-control", name="desired_job", placeholder="1순위")
+                    div(class="col-md-4"):
+                        input(type="text", class="form-control", name="desired_job", placeholder="2순위")
+                    div(class="col-md-4"):
+                        input(type="text", class="form-control", name="desired_job", placeholder="3순위")
+            div(class="form-group"):
+                label(class="control-label"): "가족 사항"
+                table(class="table"):
+                    thead:
+                        th(style="text-align: center"): "관계"
+                        th(style="text-align: center"): "이름"
+                        th(style="text-align: center"): "연령"
+                        th(style="text-align: center"): "학력"
+                        th(style="text-align: center"): "직업"
+                        th(style="text-align: center"): "연락 전화"
+                    tbody:
+                        each (x, in=range(4)):
+                            tr:
+                                td: 
+                                    input(type="text", class="form-control", name="fam-rel")
+                                td: 
+                                    input(type="text", class="form-control", name="fam-name")
+                                td:
+                                    input(type="text", class="form-control", name="fam-age")
+                                td:
+                                    input(type="text", class="form-control", name="fam-scolarship")
+                                td:
+                                    input(type="text", class="form-control", name="fam-job")
+                                td:
+                                    input(type="text", class="form-control", name="fam-phone")
+
+
+                    
+            div(class="form-group"):
+                label(class="control-label"): "교우 관계(교내)"
+                table(class="table"):
+                    thead:
+                        th(style="text-align: center"): "학년"
+                        th(style="text-align: center"): "반"
+                        th(style="text-align: center"): "이름"
+                    tbody:
+                        each (x, in=range(2)):
+                            tr:
+                                td:
+                                    input(type="text", class="form-control", name="inschoolrel-grade")
+                                td:
+                                    input(type="text", class="form-control", name="inschoolrel-class")
+                                td:
+                                    input(type="text", class="form-control", name="inschoolrel-name")
+
+
+            div(class="form-group"):
+                label(class="control-label"): "교우 관계(교외)"
+                table(class="table"):
+                    thead:
+                        th(style="text-align: center"): "학교"
+                        th(style="text-align: center"): "전화"
+                    tbody:
+                        each (x, in=range(2)):
+                            tr:
+                                td:
+                                    input(type="text", class="form-control", name="outschoolrel-school")
+                                td:
+                                    input(type="text", class="form-control", name="outschoolrel-phone")
+            div(class="form-group"):
+                label(class="control-label"): "생활 환경, 경제적 환경, 나의 성격 및 고민 거리"
+                textarea(class="form-control", rows="5")
+            div(class="form-group"):
+                label(class="control-label"): "학원 수강 및 개인 과외"
+                textarea(class="form-control", rows="5", placeholder="학원명, 수강과목, 시간을 적으세요")
+
+            div(class="form-group"):
+                label(class="control-label"): "특별한 참고 사항이나 건의 사항"
+                textarea(rows="5", class="form-control", name="note")
+            div(class="g-recaptcha", "data-sitekey"="6Lc92QMTAAAAALq2sm-FxaaxdpGaz_tAKFbcRk3j")
+            a(id="submit-btn", class="btn btn-lg colored-btn", role="button"): 
+                "제출하기"
 
 
 
-def Template():
+def Template(step=1):
     Base>
         "entrance"
-        Content
+        Content0
         CSSFiles -> $:
             "/static/css/entrace_form.css"
+        JSFiles -> $:
+            "https://www.google.com/recaptcha/api.js"
+            "/static/js/form.js"
         MasThread -> $$(class="masthread-purple", content="입실 신청")
+

@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from tempy import Environment
+from urllib import urlopen, urlencode
 
 app = Flask(__name__)
 
@@ -49,9 +50,21 @@ def entrance():
     return str(tempy_env.module("entrance").Template())
 
 
-@app.route("/entrance_form", methods=["GET"])
+@app.route("/entrance_form", methods=["GET", "POST"])
 def entrance_form():
-    return str(tempy_env.module("entrance_form").Template())
+    if request.method == "GET":
+        return str(tempy_env.module("entrance_form").Template())
+    else:
+        z = str(request.form)
+        resp = urlopen(url="https://www.google.com/recaptcha/api/siteverify",
+                       data=urlencode({"secret": "6Lc92QMTAAAAALOZqZ15An9I5Jjf-f6SvEdDas5J",
+                                       "response": request.form["g-recaptcha-response"]}))
+        z += "<br />" + resp.read()
+        z = z.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        return z
+@app.route("/withdrawal", methods=["GET", "POST"])
+def withdrawal():
+    return str(tempy_env.module("withdrawal").Template())
 
 
 @app.route("/canflaskscale", methods=["GET"])

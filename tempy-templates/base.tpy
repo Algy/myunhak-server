@@ -73,10 +73,10 @@ def Base(Type, Content, MasThread=None, CSSFiles=None, JSFiles=None):
             seq:
                 if (!JSFiles):
                     JSFiles = $()
-                JSFiles.extend>
-                    $>
-                        "/static/jquery/jquery-1.11.2.min.js"
-                        "/static/bootstrap/js/bootstrap.min.js"
-                        "/static/js/algyscroll.js"
+                default = $>
+                    "/static/jquery/jquery-1.11.2.min.js"
+                    "/static/bootstrap/js/bootstrap.min.js"
+                    "/static/js/algyscroll.js"
+                JSFiles = default + JSFiles
                 each (filename, in=JSFiles):
                     script(type="text/javascript", src=filename)
