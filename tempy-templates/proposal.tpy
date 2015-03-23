@@ -1,0 +1,13 @@
+import_from base:
+    Base
+
+import_from underctor:
+    UnderConstruction
+
+
+def Template():
+    Base>
+        "proposal"
+        UnderConstruction()
+        MasThread -> $$(class="masthread-purple", content="건의 사항")
+

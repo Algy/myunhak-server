@@ -66,6 +66,10 @@ def entrance_form():
 def withdrawal():
     return str(tempy_env.module("withdrawal").Template())
 
+@app.route("/proposal", methods=["GET", "POST"])
+def proposal():
+    return str(tempy_env.module("proposal").Template())
+
 
 @app.route("/canflaskscale", methods=["GET"])
 def canflaskscale():

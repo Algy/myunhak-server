@@ -88,7 +88,7 @@ def Template():
                         h3: x[1]
                         p: x[2]
         MasThread -> $$:
-            class-> "masthread-purple"
+            class-> "" # "masthread-purple"
             content-> $:
                 "갤러리"
         JSFiles -> $:

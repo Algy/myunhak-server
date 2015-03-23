@@ -3,7 +3,7 @@ MenuList = $:
     $$(type="policy", url="/policy", text="학습지도")
     $$(type="photo", url="/photo", text="사진")
     $$(type="entrance", url="/entrance" , text="입실신청")
-    $$(type="withdrawal", url="/withdrawal", text="퇴실신청")
+#    $$(type="withdrawal", url="/withdrawal", text="퇴실신청")
     $$(type="proposal", url="/proposal", text="건의사항")
 
 

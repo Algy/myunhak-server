@@ -1,0 +1,9 @@
+X = "지금 보시는 이 페이지는 현재 개발 중입니다. 불편을 드려서 죄송합니다."
+def UnderConstruction(s=X):
+    div(class="container", style="margin-top: 100px; margin-bottom: 100px; margin-left:auto; margin-right:auto; max-width:800px; "):
+        img(src="/static/img/underctor.jpg", alt="Under Construction!", style="float:left")
+        div(style="margin-left:40px"):
+            h2: "Under Construction!"
+            p(style="font-size: 16px; margin-top: 16px;"): s
+        div(class="clearfix", style="clear:both;")
+    

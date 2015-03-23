@@ -9,22 +9,22 @@ div(class="container main-section"):
             h2: "입실 신청서"
             div(class="form-group"):
                 label(class="control-label"): "이름"
-                input(type="text", class="form-control", name="name", placeholder="홍길동")
+                input(id="submitee-name", type="text", class="form-control", name="name", placeholder="홍길동")
             div(class="form-group"):
                 label(class="control-label"): "학년"
-                input(type="text", class="form-control", name="grade", placeholder="1학년")
+                input(id="submitee-grade", type="text", class="form-control", name="grade", placeholder="1학년")
             div(class="form-group"):
                 label(class="control-label"): "반"
-                input(type="text", class="form-control", name="class", placeholder="3반")
+                input(id="submitee-class", type="text", class="form-control", name="class", placeholder="3반")
             div(class="form-group"):
                 label(class="control-label"): "핸드폰 번호"
-                input(type="text", class="form-control", name="phone", placeholder="010-1234-5678")
+                input(id="submitee-class", type="text", class="form-control", name="phone", placeholder="010-1234-5678")
             div(class="form-group"):
                 label(class="control-label"): "이메일"
-                input(type="text", class="form-control", name="email", placeholder="youremail@example.com")
+                input(id="submitee-email", type="text", class="form-control", name="email", placeholder="youremail@example.com")
             div(class="form-group"):
                 label(class="control-label"): "입실 희망 일자와 입실 희망 시간"
-                input(type="text", class="form-control", name="desired_date", placeholder="날짜와 시간을 입력하세요")
+                input(id="submitee-date", type="text", class="form-control", name="desired-date", placeholder="날짜와 시간을 입력하세요")
             div(class="form-group"):
                 div:
                     label(class="control-label"): "입실하게 된 동기"
@@ -42,37 +42,37 @@ div(class="container main-section"):
                     span(style="margin-left: 4px"): "기타"
             div(class="form-group"):
                 label(class="control-label"): "출신 중학교"
-                input(type="text", class="form-control", name="middle-school")
+                input(id="submitee-middle-school",type="text", class="form-control", name="middle-school", placeholder="전북중학교")
             div(class="form-group"):
                 label(class="control-label"): "종교"
-                input(type="text", class="form-control", name="religion")
+                input(id="submitee-relgion", type="text", class="form-control", name="religion", placeholder="무교, 기독교, 불교 등")
             div(class="form-group"):
                 label(class="control-label"): "집 주소"
-                input(type="text", class="form-control", name="address")
+                input(id="submitee-address", type="text", class="form-control", name="address", placeholder="주소를 자세히 입력하세요")
             div(class="form-group"):
                 label(class="control-label"): "취미 혹은 특기"
-                input(type="text", class="form-control", name="hobby")
+                input(id="submitee-hobby", type="text", class="form-control", name="hobby", placeholder="취미 혹은 특기")
             div(class="form-group"):
                 label(class="control-label"): "신체적 결함 및 건강상태"
-                input(type="text", class="form-control", name="health")
+                input(id="submitee-health", type="text", class="form-control", name="health", placeholder="특기할만한 질병이나 신체적 결함을 입력하세요")
             div(class="form-group"):
                 label(class="control-label", for="checkboxes"): "희망대학"
                 div(class="row"):
                     div(class="col-md-4"):
-                        input(type="text", class="form-control", name="desired_univ", placeholder="1순위")
+                        input(type="text", class="form-control", name="desired-univ", placeholder="1순위")
                     div(class="col-md-4"):
-                        input(type="text", class="form-control", name="desired_univ", placeholder="2순위")
+                        input(type="text", class="form-control", name="desired-univ", placeholder="2순위")
                     div(class="col-md-4"):
-                        input(type="text", class="form-control", name="desired_univ", placeholder="3순위")
+                        input(type="text", class="form-control", name="desired-univ", placeholder="3순위")
             div(class="form-group"):
-                label(class="control-label"): "희망직업"
+                label( class="control-label"): "희망직업"
                 div(class="row"):
                     div(class="col-md-4"):
-                        input(type="text", class="form-control", name="desired_job", placeholder="1순위")
+                        input(type="text", class="form-control", name="desired-job", placeholder="1순위")
                     div(class="col-md-4"):
-                        input(type="text", class="form-control", name="desired_job", placeholder="2순위")
+                        input(type="text", class="form-control", name="desired-job", placeholder="2순위")
                     div(class="col-md-4"):
-                        input(type="text", class="form-control", name="desired_job", placeholder="3순위")
+                        input(type="text", class="form-control", name="desired-job", placeholder="3순위")
             div(class="form-group"):
                 label(class="control-label"): "가족 사항"
                 table(class="table"):
@@ -142,7 +142,9 @@ div(class="container main-section"):
             div(class="form-group"):
                 label(class="control-label"): "특별한 참고 사항이나 건의 사항"
                 textarea(rows="5", class="form-control", name="note")
-            div(class="g-recaptcha", "data-sitekey"="6Lc92QMTAAAAALq2sm-FxaaxdpGaz_tAKFbcRk3j")
+
+            div(class="form-group"):
+                div(class="g-recaptcha", "data-sitekey"="6Lc92QMTAAAAALq2sm-FxaaxdpGaz_tAKFbcRk3j")
             a(id="submit-btn", class="btn btn-lg colored-btn", role="button"): 
                 "제출하기"
 
@@ -157,5 +159,6 @@ def Template(step=1):
         JSFiles -> $:
             "https://www.google.com/recaptcha/api.js"
             "/static/js/form.js"
+            "/static/js/entrance_form.js"
         MasThread -> $$(class="masthread-purple", content="입실 신청")
 
