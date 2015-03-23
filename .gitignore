@@ -57,4 +57,8 @@ target/
 # Tempy Compiled files
 *.tpyc
 
+# Swap files
+*.swp
+
+
 .DS_Store
