@@ -1,4 +1,4 @@
-@import url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);
+
 
 body {
     font-family: 'Nanum Barun Gothic', '돋움', '굴림', sans-serif;
@@ -109,8 +109,7 @@ body {
 
 .footer-info p {
     margin-bottom: 0px;
-}
-
+} 
 .footer-info .telephone {
     margin-right: 10px;
 }
@@ -204,7 +203,6 @@ h4.explaination-heading {
     max-width: 700px;
     margin: 0 auto;
     padding: 40px;
-
     font-size: 15px;
 }
 
@@ -215,6 +213,22 @@ h4.explaination-heading {
 .form-jumbotron p {
     font-size: 15px;
 }
+
+.form-error-span {
+    color: #a94442;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.form-error-alert {
+    position: fixed; 
+    width: 100%;
+    top: 0px;
+    z-index:9999;
+    margin-top: 50px;
+    font-size: 16px;
+}
+
 
 /* For Photo */
 
