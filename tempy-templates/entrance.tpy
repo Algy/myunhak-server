@@ -45,11 +45,11 @@ $:
                     div: "입실희망자는 링크에서 급식신청서를 다운 받아 작성 후 급식소에 제출해야 함."
                     div: "프린터가 없어서 곤란할 경우 김창선 선생님이 2층 교무실에서 대리해줌."
                 a(href="/static/file/geupsik.hwp", target="_blank"): "급식 신청서 다운로드"
-            a(class="btn btn-lg colored-btn", disabled="", href="/entrance_form", role="button", style="margin-bottom:0px;"): "입실신청하기"
-            div(style="color: #a94442; margin-top: 3px;"): 
-                "준비 중입니다."
-                code: "010-3652-7399(김창선 선생님)"
-                "께 핸드폰 메시지로 신청바랍니다."
+            a(class="btn btn-lg colored-btn", href="/entrance_form", role="button", style="margin-bottom:0px;"): "입실신청하기"
+            # div(style="color: #a94442; margin-top: 3px;"): 
+            #    "준비 중입니다."
+            #    code: "010-3652-7399(김창선 선생님)"
+            #    "께 핸드폰 메시지로 신청바랍니다."
 
 
 

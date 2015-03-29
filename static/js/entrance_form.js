@@ -2,7 +2,46 @@
     var emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     var phoneRegex = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}$/;
 
+    function scrollTo(element, duration) {
+        duration = duration || 200;
+        var elemOffsetTop = element.offset().top;
+        $("body").animate({
+            scrollTop: elemOffsetTop - 80,
+        }, 200);
+    }
+
+    var alertIdAcc = 0;
+    function oneshotAlertMessage(msg) {
+        alertIdAcc += 1;
+        var oneshotId = 'alert-banner-' + String(alertIdAcc);
+        var template = '<div id="' + oneshotId +
+                       '" class="alert alert-danger form-error-alert" role="alert" style="display: none;">' +
+                       '    <span class="glyphicon glyphicon-exclamation-sign"></span>' +
+                       '    <span class="content">' + msg + '</span>' +
+                       '</div>';
+        var compiledTemplate = $(template);
+        $("#alert-wrapper").append(compiledTemplate);
+        $("#" + oneshotId).slideDown();
+        console.log(compiledTemplate);
+        setTimeout(function () {
+            var elem = $("#" + oneshotId);
+            elem.slideUp({complete: elem.remove});
+        }, 6000);
+    }
+    function removeAlerts() {
+        $("#alert-wrapper .alert").slideUp({
+            complete: function () {
+                $("#alert-wrapper").empty();
+            }
+        });
+    }
+
+
+
+
     // XXX: group validation
+    function submitButton() {
+    }
 
     function getGroupParent(elem) {
         function iter(elem) {
@@ -44,9 +83,18 @@
 
 
     $(document).ready(function() {
-        // initialize alert bar
-        $(".form-error-alert").hide();
-
+        // install a light checkbox hook
+        $("#motive-etc-checkbox").click(function () {
+            var elem = $("#submitee [name=motive-etc-content]");
+            if (!this.checked) {
+                elem.attr("disabled", "disabled");
+                elem.attr("placeholder", "");
+                elem.val("");
+            } else {
+                elem.attr("disabled", null);
+                elem.attr("placeholder", "동기를 입력해주세요");
+            }
+        });
 
         // install the form validater hook
         var cond = {};
@@ -80,6 +128,20 @@
             })();
         }
 
+        cond["#submitee [name=motive-etc-content]"] = {
+            validate: function (elem) {
+                if ($("#motive-etc-checkbox:checked").length > 0) {
+                    if (elem.value.trim() === "") {
+                        return false;
+                    }
+                }
+            },
+            error: function (elem) {
+                addErrorMsg(elem, "동기를 입력해주세요");
+            },
+            success: removeErrorMsg
+        };
+
 
         cond["#submitee [name=email]"] = {
             validate: emailRegex,
@@ -105,16 +167,145 @@
             success: removeErrorMsg
         };
 
-        FormHelper.FormValidator("#submitee", cond, function (errors) {
-            // $(".form-error-alert").fadeIn();
-            var elemOffsetTop = errors[0].element.offset().top;
-            $("body").animate({
-                scrollTop: elemOffsetTop - 80,
-            }, 200);
+        var condNone = [
+            "#submitee [name=hobby]",
+            "#submitee [name=healthy]",
+            "#submitee [name=fam-rel]",
+            "#submitee [name=fam-name]",
+            "#submitee [name=fam-age]",
+            "#submitee [name=fam-scolarship]",
+            "#submitee [name=fam-job]",
+            "#submitee [name=fam-phone]",
+            "#submitee [name=inschoolrel-grade]",
+            "#submitee [name=inschoolrel-class]",
+            "#submitee [name=inschoolrel-name]",
+            "#submitee [name=outschoolrel-phone]",
+            "#submitee [name=outschoolrel-school]",
+            "#submitee [name=outschoolrel-name]",
+            "#submitee [name=worry]",
+            "#submitee [name=private-lesson]",
+            "#submitee [name=note]"
+        ];
+
+        for (var idx = 0; idx < condNone.length; idx++) {
+            cond[condNone[idx]] = {};
+        }
+
+        var validator = FormHelper.FormValidator("#submitee", cond, function (errors) {
+            scrollTo(errors[0].element);
+        }, function (event) {
+            // success
+            event.preventDefault();
+            submitForm();
         });
         $("#submit-btn").click(function () {
             $("#submitee").submit();
         });
+
+        function startSubmitingState (ajaxContr) {
+            // mutation chains for views
+            
+            var backBtn = $("#back-btn");
+            backBtn.attr("disabled", null);
+            backBtn.show();
+            backBtn.off("click");
+            backBtn.click(function () {
+                ajaxContr.cancel();
+                $("#back-btn").attr("disabled", "");
+            });
+
+            
+            var submitee = $("#submitee");
+            // validator.disableAll();
+            submitee.hide();
+            $("#submit-progress-img-wrapper").fadeIn();
+            $("#submit-btn").attr("disabled", "");
+        }
+
+        function endSubmitingState () {
+            $("#back-btn").hide();
+        }
+
+
+        function startFormState () {
+            $("#submit-success-wrapper").hide();
+            $("#submit-progress-img-wrapper").hide();
+            $("#back-btn").hide();
+            $("#main-page-btn").hide();
+            $("#submit-btn").show();
+
+            var submitee = $("#submitee");
+            submitee.show();
+            // validator.enableAll();
+            $("#submitee").show();
+            $("#submit-btn").attr("disabled", null);
+
+        }
+
+        function endFormState () {
+            grecaptcha.reset();
+        }
+
+        function startSuccessState () {
+            $("#submit-success-wrapper").show();
+            $("#submit-progress-img-wrapper").hide();
+            $("#back-btn").hide();
+            $("#submit-btn").hide();
+            $("#main-page-btn").show();
+        }
+
+        function submitForm() {
+            var submitee = $("#submitee");
+            // AJAX
+            var ajaxContr = (function () {
+                var canceled = false;
+                var xhr = $.ajax({
+                    type: "POST",
+                    url: "/rest/entrance",
+                    data: submitee.serialize(),
+                    dataType: "json",
+                    timeout: 10000,
+                    success: submitSuccess,
+                    error: function (xhr, reason) {
+                        if (reason === "timeout") {
+                            oneshotAlertMessage("응답시간이 초과되었습니다. 다시 시도해주세요.");
+                        } else if (reason === "error") {
+                            oneshotAlertMessage("제출하는데 오류가 발생하였습니다.");
+                        } else if (reason === "abort") {
+                        } else {
+                            // unknown error
+                            oneshotAlertMessage("예기치 못한 오류가 발생하였습니다. 다시 시도해주세요.");
+                        }
+                        endSubmitingState();
+                        startFormState();
+                    }
+                });
+                return {
+                    cancel: function () {
+                        xhr.abort();
+                    }
+                };
+            })();
+            endFormState();
+            startSubmitingState(ajaxContr);
+        }
+
+        function submitSuccess(result) {
+            if (!!result.success) {
+                endSubmitingState();
+                startSuccessState();
+            } else {
+                oneshotAlertMessage(result.error_msg);
+
+                endSubmitingState();
+                startFormState();
+                if (result.error_reason === "recaptcha") {
+                    scrollTo($("#recaptcha"), 200);
+                }
+            }
+        }
+        startFormState(); // The first state: FormState
+
     });
 })();
 

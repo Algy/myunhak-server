@@ -220,7 +220,7 @@ h4.explaination-heading {
     font-size: 14px;
 }
 
-.form-error-alert {
+.form-error-alert-wrapper {
     position: fixed; 
     width: 100%;
     top: 0px;
@@ -228,7 +228,9 @@ h4.explaination-heading {
     margin-top: 50px;
     font-size: 16px;
 }
-
+.form-error-alert {
+    margin: 0px;
+}
 
 /* For Photo */
 
