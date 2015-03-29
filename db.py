@@ -3,7 +3,9 @@
 import hashlib
 import os
 import json
+import base64
 
+from bson.objectid import ObjectId
 from pymongo import MongoClient, ASCENDING, DESCENDING
 from pymongo.errors import DuplicateKeyError
 from redis import WatchError
@@ -264,10 +266,10 @@ class DuplicationError(Exception):
 
 
 def hash_password(pwd, salt):
-    return hashlib.sha256("".join(salt, pwd, salt)).hexdigest()
+    return hashlib.sha256("".join([salt, pwd, salt])).hexdigest()
 
 def generate_salt():
-    return os.urandom(16)
+    return base64.b16encode(os.urandom(16))
 
 class DBCommonData(object):
     def __init__(self, db):
@@ -278,7 +280,7 @@ class DBCommonData(object):
                       "created_at", 
                       lambda cond: cond or {},
                       entrance_dict_converter,
-                      {"_id": False})
+                      None)
         # public
         self.paged_entrance_data = PagedDataAdapter(entrance_mongo_data) 
 
@@ -286,9 +288,10 @@ class DBCommonData(object):
 
     def ensure_indices(self):
         self.db.user.ensure_index([("username", ASCENDING)],
-                                  unique=True)
+                                  unique=True,
+                                  dropDups=True)
 
-    def add_user(self, username, password, realname, email, role=None):
+    def add_user(self, username, password, realname, email, phone, role=None):
         salt = generate_salt()
         try:
             self.db.user.insert(
@@ -298,12 +301,13 @@ class DBCommonData(object):
                      "password": hash_password(password, salt),
                      "realname": realname,
                      "email": email,
+                     "phone": phone,
                      "role": role or []})
         except DuplicateKeyError:
             raise DuplicationError
 
-    def add_admin(self, username, password, realname, email):
-        return self.add_user(username, password, realname, email)
+    def add_admin(self, username, password, realname, email, phone):
+        return self.add_user(username, password, realname, email, phone, ["admin"])
 
 
     def rm_user(self, username):
@@ -312,11 +316,20 @@ class DBCommonData(object):
 
     def get_user_by_login(self, username, raw_password):
         rec = self.db.user.find_one({"username": username})
+        if rec is None:
+            raise LoginFailureError
         salt = rec["salt"]
-        if hash_password(raw_password, salt) != rec["password"]:
+        if hash_password(raw_password, salt) == rec["password"]:
             return rec
         else:
             raise LoginFailureError
+
+    def get_entrance(self, oid):
+        return self.db.entrance.find_one(ObjectId(oid))
+
+    def get_user_by_username(self, username, fields=None):
+        return self.db.user.find_one({"username": username}, fields=fields)
+
 
 if __name__ == "__main__":
     client = MongoClient("/tmp/mongodb-27017.sock")

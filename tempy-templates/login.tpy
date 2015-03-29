@@ -1,0 +1,32 @@
+import_from base:
+    Base
+
+def Content(next_url, login_failed):
+    $:
+        if (login_failed):
+            div(class="form-error-alert-wrapper"):
+                div(class="alert alert-danger form-error-alert"):
+                    span(class="glyphicon glyphicon-exclamation-sign")
+                    " 로그인에 실패하였습니다."
+        div(class="container", style="text-align: center;"):
+            div(class="form-jumbotron", style="display:inline;"):
+                div:
+                    form (id="submitee", class="form", method="POST"):
+                        div(class="form-group"):
+                            label(class="control"): "아이디"
+                            input(type="text", name="username") 
+                        div(class="form-group"):
+                            label(class="control"): "비밀번호"
+                            input(type="password", name="password") 
+                        if (next_url):
+                            input(type="hidden", name="next_url", value=next_url)
+                        div(class="form-group"):
+                            input(type="submit", value="로그인")
+
+
+        
+def Template(next_url=None, login_failed=False):
+    Base>
+        "login"
+        Content(next_url, login_failed)
+        MasThread -> $$(content="로그인")

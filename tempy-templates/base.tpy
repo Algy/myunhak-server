@@ -5,6 +5,7 @@ MenuList = $:
     $$(type="entrance", url="/entrance" , text="입실신청")
 #    $$(type="withdrawal", url="/withdrawal", text="퇴실신청")
     $$(type="proposal", url="/proposal", text="건의사항")
+    $$(type="manage", url="/manage", text="관리")
 
 
 def Navbar(Type, NavbarClass=""):

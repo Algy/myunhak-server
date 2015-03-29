@@ -7,6 +7,7 @@ user
 
     realname: string
     email: string
+    phone: string
 
     receive_email: boolean
 
