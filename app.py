@@ -368,6 +368,7 @@ def rest_entrance():
     kwds["outschool_rel"] = outschool_rel
     kwds["ip"] = request.remote_addr
 
+    '''
     recaptcha_response = form["g-recaptcha-response"]
     if not recaptcha_response:
         return rest_error_response(error_reason="recaptcha", 
@@ -378,6 +379,7 @@ def rest_entrance():
         return rest_error_response(error_reason="recaptcha", 
                                    error_msg="인증에 실패하였습니다."
                                              " 다시 시도하세요.")
+    '''
 
     # success!
     add_entrance_data(kwds)
@@ -387,4 +389,4 @@ def rest_entrance():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=80, debug=True)

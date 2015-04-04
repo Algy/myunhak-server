@@ -243,7 +243,7 @@
         }
 
         function endFormState () {
-            grecaptcha.reset();
+            // grecaptcha.reset();
         }
 
         function startSuccessState () {

@@ -148,10 +148,14 @@ Content0 = $:
                     label(class="control-label"): "특별한 참고 사항이나 건의 사항"
                     textarea(rows="5", class="form-control", name="note")
 
-                div(class="form-group"):
-                    label(class="control-label"): "아래 상자를 체크하세요(스팸 방지용)"
-                    div(id="recaptcha-wrapper"):
-                        div(id="recaptcha", class="g-recaptcha","data-sitekey"="6Lc92QMTAAAAALq2sm-FxaaxdpGaz_tAKFbcRk3j")
+                seq:
+                    '''
+                    div(class="form-group"):
+                        label(class="control-label"): "아래 상자를 체크하세요(스팸 방지용)"
+                        div(id="recaptcha-wrapper"):
+                            div(id="recaptcha", class="g-recaptcha","data-sitekey"="6Lc92QMTAAAAALq2sm-FxaaxdpGaz_tAKFbcRk3j")
+                    '''
+                    None
 
             div(id="submit-progress-img-wrapper", style="display:none"):
                 img(src="/static/img/progress64.gif", style="display: inline-block; margin: 20px;")
@@ -179,7 +183,7 @@ def Template(step=1):
         CSSFiles -> $:
             "/static/css/entrace_form.css"
         JSFiles -> $:
-            "https://www.google.com/recaptcha/api.js"
+#            "https://www.google.com/recaptcha/api.js"
             "/static/js/form.js"
             "/static/js/entrance_form.js"
         MasThread -> $$(class="masthread-purple", content="입실 신청")
