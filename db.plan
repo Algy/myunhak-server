@@ -1,0 +1,57 @@
+
+user
+{
+    username: string
+    salt: string
+    password: string
+
+    realname: string
+    email: string
+    phone: string
+
+    receive_email: boolean
+
+    role: string list
+        in ["admin"]
+}
+
+
+entrance
+{
+    created_at: datetime
+    ip: string
+
+    name: string
+    grade: string
+    class: string
+    email: string
+    address: string
+    religion: string
+    desired_date: string
+    motive: string list
+    motive_etc_content : string or null
+    middle_school: string
+    worry: string
+    hobby: string
+    healthy: string
+    desired_univ: string list
+    desired_job: string list
+    familly: {
+        rel: string
+        name: string
+        age: string
+        scholarship: string
+        job: string
+        phone: string
+    } list
+    inschool_rel: {
+        grade: string
+        class:  string
+        name: string
+    }
+    outschool_rel: {
+        school: string
+        phone: string
+        name: string
+    }
+}

@@ -1,0 +1,31 @@
+import_from base:
+    Base
+
+    
+
+def Template(dicts):
+    Base>
+        "manage"
+        div(class="container"):
+            h3: "입실 신청 리스트"
+            table(class="table table-bordered table-striped"):
+                thead:
+                    th: "날짜"
+                    th: "이름"
+                    th: "학년"
+                    th: "반"
+                    th: "이메일"
+                    th: "주소"
+                tbody:
+                    for (d, in=dicts):
+                        tr:
+                            td: str(d["created_at"])
+                            td: 
+                                a(href="/manage/"+str(d["_id"])):
+                                    d["name"].encode("utf-8")
+                            td: d["grade"].encode("utf-8")
+                            td: d["class"].encode("utf-8")
+                            td: d["email"].encode("utf-8")
+                            td: d["address"].encode("utf-8")
+            h3: "NOTE: 개발자가 이 페이지를 개발하다 쓰러져 잠들었습니다.;("
+        MasThread -> $$(content="관리 페이지")

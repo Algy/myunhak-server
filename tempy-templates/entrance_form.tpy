@@ -3,9 +3,7 @@ import_from base:
 
 
 Content0 = $:
-    div(class="alert alert-danger form-error-alert", role="alert"):
-        span(class="glyphicon glyphicon-exclamation-sign")
-        " 실패하였습니다."
+    div(id="alert-wrapper", class="form-error-alert-wrapper")
     div(class="container main-section"):
         div(class="jumbotron form-jumbotron"):
             form (id="submitee", class="form-horizontal fmrm-content", method="POST"):
@@ -32,17 +30,18 @@ Content0 = $:
                     div:
                         label(class="control-label"): "입실하게 된 동기"
                     div:
-                        input(type="checkbox", name="motive_himself", value="본인 의사", style="margin-left: 10px")
+                        input(type="checkbox", name="motive-himself", value="본인 의사", style="margin-left: 10px")
                         span(style="margin-left: 4px"): "본인 의사"
                     div:
-                        input(type="checkbox", name="motive_parent", value="부모 권유", style="margin-left: 10px")
+                        input(type="checkbox", name="motive-parent", value="부모 권유", style="margin-left: 10px")
                         span(style="margin-left: 4px"): "부모 권유"
                     div:
-                        input(type="checkbox", name="motive_friend", value="친구 권유", style="margin-left: 10px")
+                        input(type="checkbox", name="motive-friend", value="친구 권유", style="margin-left: 10px")
                         span(style="margin-left: 4px"): "친구 권유"
                     div:
-                        input(type="checkbox", name="motive_etc", value="친구 권유", style="margin-left: 10px")
+                        input(id="motive-etc-checkbox", type="checkbox", name="motive-etc", value="기타", style="margin-left: 10px")
                         span(style="margin-left: 4px"): "기타"
+                        input(name="motive-etc-content", disabled="disabled", style="margin-left: 5px", placeholder="")
                 div(class="form-group"):
                     label(class="control-label"): "출신 중학교"
                     input(id="submitee-middle-school",type="text", class="form-control", name="middle-school", placeholder="전북중학교")
@@ -57,7 +56,7 @@ Content0 = $:
                     input(id="submitee-hobby", type="text", class="form-control", name="hobby", placeholder="취미 혹은 특기")
                 div(class="form-group"):
                     label(class="control-label"): "신체적 결함 및 건강상태"
-                    input(id="submitee-health", type="text", class="form-control", name="health", placeholder="특기할만한 질병이나 신체적 결함을 입력하세요")
+                    input(id="submitee-healthy", type="text", class="form-control", name="healthy", placeholder="특기할만한 질병이나 신체적 결함을 입력하세요")
                 div(class="form-group"):
                     label(class="control-label", for="checkboxes"): "희망대학"
                     div(class="row"):
@@ -128,6 +127,7 @@ Content0 = $:
                         thead:
                             th(style="text-align: center"): "학교"
                             th(style="text-align: center"): "전화"
+                            th(style="text-align: center"): "이름"
                         tbody:
                             each (x, in=range(2)):
                                 tr:
@@ -135,23 +135,44 @@ Content0 = $:
                                         input(type="text", class="form-control", name="outschoolrel-school")
                                     td:
                                         input(type="text", class="form-control", name="outschoolrel-phone")
+                                    td:
+                                        input(type="text", class="form-control", name="outschoolrel-name")
                 div(class="form-group"):
                     label(class="control-label"): "생활 환경, 경제적 환경, 나의 성격 및 고민 거리"
-                    textarea(class="form-control", rows="5")
+                    textarea(class="form-control", name="worry", rows="5")
                 div(class="form-group"):
                     label(class="control-label"): "학원 수강 및 개인 과외"
-                    textarea(class="form-control", rows="5", placeholder="학원명, 수강과목, 시간을 적으세요")
+                    textarea(class="form-control", rows="5", name="private-lesson", placeholder="학원명, 수강과목, 시간을 적으세요")
 
                 div(class="form-group"):
                     label(class="control-label"): "특별한 참고 사항이나 건의 사항"
                     textarea(rows="5", class="form-control", name="note")
 
-                div(class="form-group"):
-                    label(class="control-label"): "아래 상자를 체크하세요(스팸 방지용)"
-                    div(id="recaptcha", class="g-recaptcha", "data-sitekey"="6Lc92QMTAAAAALq2sm-FxaaxdpGaz_tAKFbcRk3j")
-                div(class="form-group"):
-                    a(id="submit-btn", class="btn btn-lg colored-btn", role="button"): 
-                        "제출하기"
+                seq:
+                    '''
+                    div(class="form-group"):
+                        label(class="control-label"): "아래 상자를 체크하세요(스팸 방지용)"
+                        div(id="recaptcha-wrapper"):
+                            div(id="recaptcha", class="g-recaptcha","data-sitekey"="6Lc92QMTAAAAALq2sm-FxaaxdpGaz_tAKFbcRk3j")
+                    '''
+                    None
+
+            div(id="submit-progress-img-wrapper", style="display:none"):
+                img(src="/static/img/progress64.gif", style="display: inline-block; margin: 20px;")
+                h3(style="display: inline-block; font-size:18px;"): "잠시만 기다려주세요.."
+            div(id="submit-success-wrapper", style="display: none;"):
+                h2(style="margin-bottom: 15px;"): "입실 신청이 완료되었습니다."
+                div(style="font-size:18px;"):
+                    "입실신청서가 성공적으로 제출되었습니다. 아래의 링크를 눌러 급식신청서를 다운로드 받아서 작성후 입실시 제출해주시길 바랍니다. 감사합니다."
+                a(href="/static/file/geupsik.hwp", target="_blank"): "급식 신청서 다운로드"
+
+
+            a(href="/", id="main-page-btn", class="btn btn-lg colored-btn", style="display: none; margin-right:5px; margin-top: 30px;", role="button"):
+                "메인페이지로"
+            a(id="back-btn", class="btn btn-lg colored-btn", style="display: none; margin-right:5px;", role="button"):
+                "뒤로"
+            a(id="submit-btn", class="btn btn-lg colored-btn", style="margin-right:5px;", role="button"): 
+                "제출하기"
 
 
 
@@ -162,7 +183,7 @@ def Template(step=1):
         CSSFiles -> $:
             "/static/css/entrace_form.css"
         JSFiles -> $:
-            "https://www.google.com/recaptcha/api.js"
+#            "https://www.google.com/recaptcha/api.js"
             "/static/js/form.js"
             "/static/js/entrance_form.js"
         MasThread -> $$(class="masthread-purple", content="입실 신청")

@@ -1,0 +1,12 @@
+import_from base:
+    Base
+
+
+def Template(d):
+    Base>
+        "manage"
+        $:
+            span:
+            d[""]
+
+        MasThread -> $$(class="masthread-purple", content="관리 페이지")

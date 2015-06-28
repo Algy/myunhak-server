@@ -1,7 +1,7 @@
 // require jquery
 //
 var FormHelper = (function() {
-    function FormValidator(formSelector, bundleHash, submitError) {
+    function FormValidator(formSelector, bundleHash, submitError, submitSuccess) {
         function errorLog(x) {
             console.error("[FormValidator] " + x);
         }
@@ -34,10 +34,12 @@ var FormHelper = (function() {
                             return false;
                         }
                     };
-                }
-
-                if (validateFun === undefined)
+                } 
+                if (validateFun === undefined) {
+                    if (!!successHandler)
+                        successHandler($(elem));
                     return true;
+                }
 
                 for (var idx = 0; idx < elemArray.length; idx++) {
                     var elem = elemArray[idx];
@@ -47,36 +49,61 @@ var FormHelper = (function() {
                         errorElemList.push({element: $(elem), errorValue: ret});
                         success = false;
                     } else {
-                        successHandler($(elem));
+                        if (!!successHandler) {
+                            successHandler($(elem));
+                        }
                     }
                 }
                 return success;
             }
 
-            function validateAll () {
+            function validateAll (errorElemList) {
                 var success = true;
-                var errorElemList = [];
                 for (var hashName in bundleHash) {
                     if (bundleHash.hasOwnProperty(hashName)) {
-                        console.log(hashName);
                         var validatorHash = bundleHash[hashName];
                         if (!validateOne(hashName, validatorHash, errorElemList)) {
                             success = false;
                         }
                     }
                 }
-                if (!success && !!submitError) {
-                    submitError(errorElemList);
-                }
                 return success;
             }
 
             $(formSelector).submit(function (event) {
-                if (!validateAll()) {
+                var errorElemList = [];
+                if (!validateAll(errorElemList)) {
+                    if (!!submitError) {
+                        submitError(errorElemList);
+                    }
                     event.preventDefault();
+                } else {
+                    if (!!submitSuccess) {
+                        submitSuccess(event);
+                    }
                 }
             });
+            // !-- end of $(document).ready(...)
         });
+        function forEachElement(fun) {
+            for (var hashName in bundleHash) {
+                if (bundleHash.hasOwnProperty(hashName)) {
+                    fun($(hashName));
+                }
+            }
+        }
+        return {
+            disableAll: function () {
+                forEachElement(function (elem) {
+                    elem.attr("disabled", "");
+                });
+            },
+            enableAll: function () {
+                forEachElement(function (elem) {
+                    elem.attr("disabled", null);
+                });
+            }
+        };
     }
 
     return {
